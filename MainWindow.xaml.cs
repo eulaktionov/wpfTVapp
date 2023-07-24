@@ -34,7 +34,7 @@ namespace TVapp
 
         void powerUnchecked(object sender, RoutedEventArgs e)
         {
-            video.Stop();
+            video.Close();
 
             play.IsChecked = false;
             pause.IsChecked = false;
@@ -56,7 +56,8 @@ namespace TVapp
         }
         void stopChecked(object sender, RoutedEventArgs e)
         {
-            video.Stop();
+            video.Close();
+//            video.Stop();
         }
     }
 }
