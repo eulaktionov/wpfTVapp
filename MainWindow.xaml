@@ -2,8 +2,46 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="TV" Height="720" Width="720">
+    <Window.Resources>
+        <ControlTemplate x:Key="RadioButtonTemplate" TargetType="RadioButton">
+            <Grid>
+                <Ellipse Height="25" Width="25" Fill="Silver"/>
+                <Ellipse x:Name="backEllipse" Height="22" Width="22">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Offset="0" Color="Red"/>
+                            <GradientStop Offset="1.25" Color="Beige"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <ContentPresenter Content="{TemplateBinding Content}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="RadioButton.IsEnabled" Value="False">
+                    <Setter TargetName="backEllipse" Property="Fill">
+                        <Setter.Value>
+                            <RadialGradientBrush>
+                                <GradientStop Offset="0" Color="LightBlue"/>
+                                <GradientStop Offset="1.25" Color="Black"/>
+                            </RadialGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="RadioButton.IsChecked" Value="Ture">
+                    <Setter TargetName="backEllipse" Property="Fill">
+                        <Setter.Value>
+                            <RadialGradientBrush>
+                                <GradientStop Offset="0" Color="LightBlue"/>
+                                <GradientStop Offset="1.25" Color="Black"/>
+                            </RadialGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
     <Canvas>
-        <Border Canvas.Left="150" Canvas.Top="20" Height="370" Width="490" Background="DimGray" BorderThickness="4" BorderBrush="Black">
+        <Border Canvas.Left="150" Canvas.Top="20" Height="370" Width="490" Background="DimGray" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -15,9 +53,16 @@
                 </Border>
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <RadioButton x:Name="play" IsChecked="False" Margin="0,0,5,15" Checked="playChecked"/>
-                <RadioButton x:Name="pause" IsChecked="False" Margin="0,0,5,15" Checked="pauseChecked"/>
-                <RadioButton x:Name="stop" IsChecked="False" Margin="0,0,5,15" Checked="stopChecked"/>
+                    <RadioButton x:Name="play" IsChecked="False" Margin="0,0,5,15" Checked="playChecked"
+                    Template="{StaticResource RadioButtonTemplate}">
+                        <Image Height="20" Width="20" Source="C:\Now\Me\_Current\TVapp\Images\play.png " Stretch="Uniform"/>
+                    </RadioButton>
+                    <RadioButton x:Name="pause" IsChecked="False" Margin="0,0,5,15" Checked="pauseChecked"                    Template="{StaticResource RadioButtonTemplate}">
+                        <Image Height="20" Width="20" Source="C:\Now\Me\_Current\TVapp\Images\pause.png" Stretch="Uniform"/>
+                    </RadioButton>
+                    <RadioButton x:Name="stop" IsChecked="False" Margin="0,0,5,15" Checked="stopChecked"                    Template="{StaticResource RadioButtonTemplate}">
+                        <Image Height="20" Width="20" Source="C:\Now\Me\_Current\TVapp\Images\stop.png" Stretch="Uniform"/>
+                    </RadioButton>
                 </StackPanel>
                 <CheckBox x:Name="power" Grid.Row="1" Width="25" Height="25" HorizontalAlignment="Left" Margin="15,0,0,15" Checked="powerChecked" Unchecked="powerUnchecked"/>
             </Grid>
