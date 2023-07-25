@@ -28,8 +28,6 @@ namespace TVapp
         void powerChecked(object sender, RoutedEventArgs e)
         {
             play.IsEnabled = true;
-            pause.IsEnabled = true;
-            stop.IsEnabled = true;
         }
 
         void powerUnchecked(object sender, RoutedEventArgs e)
@@ -48,6 +46,8 @@ namespace TVapp
         void playChecked(object sender, RoutedEventArgs e)
         {
             video.Play();
+            pause.IsEnabled = true;
+            stop.IsEnabled = true;
         }
 
         void pauseChecked(object sender, RoutedEventArgs e)
@@ -57,7 +57,7 @@ namespace TVapp
         void stopChecked(object sender, RoutedEventArgs e)
         {
             video.Close();
-//            video.Stop();
+            pause.IsEnabled = false;
         }
     }
 }

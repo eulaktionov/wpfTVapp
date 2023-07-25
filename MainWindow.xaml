@@ -10,7 +10,7 @@
                     <Ellipse.Fill>
                         <RadialGradientBrush>
                             <GradientStop Offset="0" Color="Red"/>
-                            <GradientStop Offset="1.25" Color="Beige"/>
+                            <GradientStop Offset="1.25" Color="Black"/>
                         </RadialGradientBrush>
                     </Ellipse.Fill>
                 </Ellipse>
@@ -27,11 +27,11 @@
                         </Setter.Value>
                     </Setter>
                 </Trigger>
-                <Trigger Property="RadioButton.IsChecked" Value="Ture">
+                <Trigger Property="RadioButton.IsChecked" Value="True">
                     <Setter TargetName="backEllipse" Property="Fill">
                         <Setter.Value>
                             <RadialGradientBrush>
-                                <GradientStop Offset="0" Color="LightBlue"/>
+                                <GradientStop Offset="0" Color="LimeGreen"/>
                                 <GradientStop Offset="1.25" Color="Black"/>
                             </RadialGradientBrush>
                         </Setter.Value>
@@ -49,22 +49,52 @@
                 </Grid.RowDefinitions>
 
                 <Border Margin="0,20,0,10" Background="Black" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="2" BorderBrush="Silver" CornerRadius="2">
-                    <MediaElement Height="300" Width="400" x:Name="video" Source="C:\Now\Me\WPFex\ch24\Fig24_11_13\TV\TV\Video\media.mp4 " LoadedBehavior="Manual" Stretch="Fill"/>
+                    <MediaElement Height="300" Width="400" x:Name="video" Source="C:\Now\Me\WPFex\ch24\Fig24_11_13\TV\TV\Video\media.mp4" LoadedBehavior="Manual" Stretch="Fill"/>
                 </Border>
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <RadioButton x:Name="play" IsChecked="False" Margin="0,0,5,15" Checked="playChecked"
+                    <RadioButton x:Name="play" IsEnabled="False" Margin="0,0,5,15" Checked="playChecked"
                     Template="{StaticResource RadioButtonTemplate}">
                         <Image Height="20" Width="20" Source="C:\Now\Me\_Current\TVapp\Images\play.png " Stretch="Uniform"/>
                     </RadioButton>
-                    <RadioButton x:Name="pause" IsChecked="False" Margin="0,0,5,15" Checked="pauseChecked"                    Template="{StaticResource RadioButtonTemplate}">
+                    <RadioButton x:Name="pause" IsEnabled="False" Margin="0,0,5,15" Checked="pauseChecked"                    Template="{StaticResource RadioButtonTemplate}">
                         <Image Height="20" Width="20" Source="C:\Now\Me\_Current\TVapp\Images\pause.png" Stretch="Uniform"/>
                     </RadioButton>
-                    <RadioButton x:Name="stop" IsChecked="False" Margin="0,0,5,15" Checked="stopChecked"                    Template="{StaticResource RadioButtonTemplate}">
+                    <RadioButton x:Name="stop" IsEnabled="False" Margin="0,0,5,15" Checked="stopChecked"                    Template="{StaticResource RadioButtonTemplate}">
                         <Image Height="20" Width="20" Source="C:\Now\Me\_Current\TVapp\Images\stop.png" Stretch="Uniform"/>
                     </RadioButton>
                 </StackPanel>
-                <CheckBox x:Name="power" Grid.Row="1" Width="25" Height="25" HorizontalAlignment="Left" Margin="15,0,0,15" Checked="powerChecked" Unchecked="powerUnchecked"/>
+                <CheckBox x:Name="power" Grid.Row="1" Width="25" Height="25" HorizontalAlignment="Left" Margin="15,0,0,15" Checked="powerChecked" Unchecked="powerUnchecked">
+                    <CheckBox.Template>
+                        <ControlTemplate TargetType="CheckBox">
+                            <Grid>
+                                <Ellipse Height="25" Width="25" Fill="Silver"/>
+                                <Ellipse x:Name="backEllipse" Height="22" Width="22">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush>
+                                            <GradientStop Offset="0" Color="LightGray"/>
+                                            <GradientStop Offset="1.25" Color="Black"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <ContentPresenter Content="{TemplateBinding Content}"/>
+                                <Image Source="C:\Now\Me\_Current\TVapp\Images\power.png" Stretch="Uniform"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="CheckBox.IsChecked" Value="True">
+                                    <Setter TargetName="backEllipse" Property="Fill">
+                                        <Setter.Value>
+                                            <RadialGradientBrush>
+                                                <GradientStop Offset="0" Color="LimeGreen"/>
+                                                <GradientStop Offset="1.25" Color="Black"/>
+                                            </RadialGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </CheckBox.Template>
+                </CheckBox>
             </Grid>
         </Border>
     </Canvas>
